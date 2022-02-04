@@ -2,6 +2,13 @@
   console.log('home page loaded');
 </script>
 
+<div class="home-page">
+  <h1>WUT DO - WITH TROLL FONT (NOT ROBOTO)</h1>
+
+  <!-- Component ideas -->
+  <!-- NOT sure if to make this like a dashboard page, then you can click a thing to view previous lists.  Or maybe just one big list of things.  IDK, what you think @Matt Kilcup -->
+</div>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
@@ -19,9 +26,4 @@
   }
 </style>
 
-<div class="home-page">
-  <h1>WUT DO - WITH TROLL FONT (NOT ROBOTO)</h1>
 
-  <!-- Component ideas -->
-  <!-- NOT sure if to make this like a dashboard page, then you can click a thing to view previous lists.  Or maybe just one big list of things.  IDK, what you think @Matt Kilcup -->
-</div>
