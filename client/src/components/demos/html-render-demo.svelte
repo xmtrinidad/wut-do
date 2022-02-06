@@ -19,8 +19,14 @@
 </div>
 
 <style>
+  /* This won't work */
   h1 {
     
+  }
+
+  /* This doesn't work either */
+  .html-render-demo h1 {
+
   }
 
   /* Applying styles to string HTML doesn't work without global, this is the apparent solution https://stackoverflow.com/questions/59669571/svelte-dynamic-html-elements-do-not-have-css-applied */
