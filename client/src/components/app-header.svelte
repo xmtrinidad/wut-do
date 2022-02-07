@@ -7,7 +7,7 @@
     <span class="app-title-or-whatever">WUT DO - NOT AN AWS APP</span>
   </div>
   <div class="header-right">
-    <button class="login-btn-or-whatever">LOGIN BRUH</button>
+    <slot></slot>
   </div>
 </header>
 
@@ -28,10 +28,6 @@
   .app-title-or-whatever {
     font-size: 1.5rem;
     font-weight: bold;
-  }
-
-  .login-btn-or-whatever {
-    font-weight: bolder;
   }
 </style>
 
