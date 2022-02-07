@@ -1,8 +1,15 @@
 <script>
 import AttributesDemo from "../components/demos/attributes-demo.svelte";
 import HtmlRenderDemo from '../components/demos/html-render-demo.svelte';
+import PropsDemo from '../components/demos/props-demo.svelte';
 
-  console.log('demo page loaded');
+// Prop being passed into PropsDemo
+const things = [
+  { title: 'Thing Title 1', description: 'This be a test description 1'},
+  { title: 'Thing Title 2', description: 'This be a test description 2'},
+  { title: 'Thing Title 3', description: 'This be a test description 3'},
+  { title: 'Thing Title 4', description: 'This be a test description 4'},
+];
 </script>
 
 <!-- This is a demo page to learn the ways of Svelte -->
@@ -12,6 +19,9 @@ import HtmlRenderDemo from '../components/demos/html-render-demo.svelte';
   </div>
   <div class="demo">
     <HtmlRenderDemo></HtmlRenderDemo>
+  </div>
+  <div class="demo">
+    <PropsDemo things={things}></PropsDemo>
   </div>
 </div>
 
