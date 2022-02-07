@@ -5,15 +5,13 @@
     'https://media3.giphy.com/media/UUgHwIBcib16awR00q/giphy.gif?cid=790b761128184aa57a1b95ba4345fd4b37b8435fb40a0774&rid=giphy.gif&ct=g'
   ];
   let index = 0;
-	let src = gifs[index];
+	$: src = gifs[index];
 
   function onNewGifClick() {
-    index += 1;
+    index++;
     if (!gifs[index]) {
       index = 0;
     }
-
-    src = gifs[index]
   }
 </script>
 
