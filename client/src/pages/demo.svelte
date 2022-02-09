@@ -1,6 +1,7 @@
 <script>
 import AttributesDemo from "../components/demos/attributes-demo.svelte";
 import HtmlRenderDemo from '../components/demos/html-render-demo.svelte';
+import BindDemo from '../components/demos/bind-demo.svelte';
 import PropsDemo from '../components/demos/props-demo.svelte';
 
 // Prop being passed into PropsDemo
@@ -22,6 +23,9 @@ const things = [
   </div>
   <div class="demo">
     <PropsDemo things={things}></PropsDemo>
+  </div>
+  <div class="demo">
+    <BindDemo></BindDemo>
   </div>
 </div>
 
