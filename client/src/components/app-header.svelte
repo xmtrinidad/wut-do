@@ -1,5 +1,11 @@
 <script>
-  console.log('login page loaded');
+  import { isActive, url } from '@roxi/routify';
+  import { routes } from '../../.routify/routes';
+  let theRoutes = [];
+  routes.forEach(route => {
+    route.path === '/index' ? (route.name = 'home') : route;
+    theRoutes.push({ path: route.path, name: route.name });
+  });
 </script>
 
 <header>
@@ -7,7 +13,16 @@
     <span class="app-title-or-whatever">WUT DO - NOT AN AWS APP</span>
   </div>
   <div class="header-right">
-    <slot></slot>
+    <ul>
+      {#each theRoutes as aRoute}
+        <!-- Svelte magic. If isActive is true, the "active" class is applied. -->
+        <li class:active={$isActive(aRoute.path)}>
+          <a href={$url(aRoute.path)}>
+            {aRoute.name}
+          </a>
+        </li>
+      {/each}
+    </ul>
   </div>
 </header>
 
@@ -29,6 +44,7 @@
     font-size: 1.5rem;
     font-weight: bold;
   }
+  .active {
+    font-weight: bold;
+  }
 </style>
-
-
