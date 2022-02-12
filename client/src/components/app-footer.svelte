@@ -4,7 +4,7 @@
 </script>
 
 <footer>
-  @copy {date}
+  &copy; {date}
 </footer>
 
 <style>
