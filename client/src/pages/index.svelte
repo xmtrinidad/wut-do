@@ -1,8 +1,12 @@
 <script>
-  console.log('home page loaded');
+  import CreateWutdoModal from '../components/modals/create-wutdo-modal.svelte';
 
-  function createWutDo() {
-    console.log('create wut do works');
+  console.log('home page loaded');
+  let modalOpen = false;
+
+  function onSubmitWutDo(e) {
+    console.log('Submit the wut dooo', e.detail);
+    modalOpen = false;
   }
 
 </script>
@@ -11,10 +15,17 @@
   <h1>WUT DO - WITH TROLL FONT (NOT ROBOTO)</h1>
 
   <!-- Learning click events -->
-  <button on:click="{createWutDo}" class="add-btn">Add WUT DO</button>
+  <button on:click="{() => modalOpen = true}" class="add-btn">Add WUT DO</button>
 
+  <!-- Not sure if this is the way to hide/show stuff but it works -->
+  {#if modalOpen}
+    <CreateWutdoModal on:submit="{onSubmitWutDo}" on:close-modal="{() => modalOpen = false}"></CreateWutdoModal>
+  {/if}
+  
   <!-- Component ideas -->
   <!-- NOT sure if to make this like a dashboard page, then you can click a thing to view previous lists.  Or maybe just one big list of things.  IDK, what you think @Matt Kilcup -->
+
+
 </div>
 
 <style>
