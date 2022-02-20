@@ -1,11 +1,8 @@
 FROM mcr.microsoft.com/mssql/server:2017-latest
 
-# Create work directory
-RUN mkdir -p /usr/work
-WORKDIR /usr/work
-# Copy all scripts into working directory
-COPY . /usr/work/
-# Grant permissions for the import-data script to be executable
-RUN chmod +x /usr/work/import-data.sh
-EXPOSE 1433
-CMD /bin/bash ./entrypoint.sh
+ENV ACCEPT_EULA=Y
+ENV SA_PASSWORD=Test@12345
+ENV MSSQL_PID=Developer
+ENV MSSQL_TCP_PORT=1433 
+
+WORKDIR /src
