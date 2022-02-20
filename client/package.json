@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "run-p dev:* --host:0.0.0.0",
-    "dev:rollup": "vite",
+    "dev": "run-p dev:*",
+    "dev:rollup": "vite --host 0.0.0.0",
     "dev:routify": "routify",
     "preview": "vite preview"
   },

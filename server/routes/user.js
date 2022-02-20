@@ -7,15 +7,8 @@ router.get('/', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-    const { data, error } = await supabase.from('Users').select('username, password').match({ username, password });
-    console.log(data);
-    console.log(error);
-    if (data.length === 1) {
-      req.session.user = username;
-      return res.status(200).json({ success: true, username });
-    } else if (data.length === 0) {
-      return res.json({ success: false, msg: 'no user' });
-    }
+    console.log(username, password);
+    return res.status(200).json({ success: true, username });
   } catch (err) {
     console.error(err);
   }

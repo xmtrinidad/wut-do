@@ -22,14 +22,3 @@ services:
         target: 3001
     volumes:
       - ./server:/app
-    depends_on:
-      - database
-  database:
-    build:
-      context: ./server/db
-      dockerfile: Dockerfile
-    container_name: database
-    ports:
-      - "1433:1433"
-    volumes:
-      - .:/var/opt/mssql/data
