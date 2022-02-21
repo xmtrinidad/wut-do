@@ -46,7 +46,7 @@ router.get('/user-deets', async (req, res) => {
 
 router.get('/users', async (req, res) => {
   try {
-    // console.log(sqlConfig);
+    console.log(sqlConfig);
     await sql.connect(sqlConfig);
     // const connectionString = await sql.connect('Server=database,1433;Database=WutDoDB;User Id=SA;Password=Testing1122');
     // console.log(connectionString);
