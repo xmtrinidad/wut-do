@@ -22,3 +22,25 @@ services:
         target: 3001
     volumes:
       - ./server:/app
+    depends_on:
+      - database
+  database:
+    build:
+      context: ./server/db
+      dockerfile: Dockerfile
+    container_name: database
+    ports:
+      - "1433:1433"
+    env_file:
+      - ./server/db/sqlserver.env
+      - ./server/db/sapassword.env
+    volumes:
+      - sqlsystem:/var/opt/mssql/
+      - sqldata:/var/opt/sqlserver/data
+      - sqllog:/var/opt/sqlserver/log
+      - sqlbackup:/var/opt/sqlserver/backup
+volumes:
+  sqlsystem:
+  sqldata:
+  sqllog:
+  sqlbackup:
