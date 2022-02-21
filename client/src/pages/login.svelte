@@ -21,6 +21,11 @@
     });
     return post;
   }
+
+  async function getUsersClick() {
+    const get = await (await fetch('/user/users')).json();
+    console.log(get);
+  }
 </script>
 
 <div class="wrapper">
@@ -34,6 +39,7 @@
         on:click|preventDefault={handleClick}>submit</button
       >
     </form>
+    <button on:click={getUsersClick}>get all users</button>
   </div>
 </div>
 
