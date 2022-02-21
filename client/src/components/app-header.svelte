@@ -1,7 +1,7 @@
 <script>
-  import { isActive, url } from '@roxi/routify';
+  import { isActive, url, goto } from '@roxi/routify';
   import { routes } from '../../.routify/routes';
-  let theRoutes = [];
+  const theRoutes = [];
   routes.forEach(route => {
     route.path === '/index' ? (route.name = 'home') : route;
     theRoutes.push({ path: route.path, name: route.name });

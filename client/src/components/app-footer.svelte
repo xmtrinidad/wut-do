@@ -1,5 +1,4 @@
 <script>
-  console.log('we have a footer');
   export const date = new Date().getFullYear();
 </script>
 

@@ -5,11 +5,13 @@ import { svelte } from '@sveltejs/vite-plugin-svelte';
 export default defineConfig({
   plugins: [svelte()],
   server: {
-    open: true,
-    https: false,
+    open: false,
     proxy: {
       '/api': {
-        target: 'http://localhost:3001/'
+        target: 'http://backend:3001'
+      },
+      '/user': {
+        target: 'http://backend:3001'
       }
     }
   }
