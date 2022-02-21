@@ -1,3 +1,6 @@
 **/node_modules/
 .vscode
 client/.routify
+server/.env
+server/db/sapassword.env
+server/db/sqlserver.env

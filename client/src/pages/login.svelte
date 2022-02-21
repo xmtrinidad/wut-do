@@ -1,4 +1,31 @@
 <script>
+  import { setContext } from 'svelte';
+  async function handleClick() {
+    // even though it's JS svelte (or my vsCode) complains about TS stuff
+    const username = document.querySelector('#username')['value'];
+    const password = document.querySelector('#password')['value'];
+    const wait = await postThingBro(username, password);
+    const response = await wait.json();
+    console.log(response);
+    if (response.username) {
+      setContext('username', username);
+    }
+  }
+  async function postThingBro(username, password) {
+    const post = await fetch('/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    });
+    return post;
+  }
+
+  async function getUsersClick() {
+    const get = await (await fetch('/user/users')).json();
+    console.log(get);
+  }
 </script>
 
 <div class="wrapper">
@@ -6,11 +33,13 @@
   <div class="login">
     <form class="login-form">
       <label for="username">username</label>
-      <input type="text" name="username" /><label for="password">password</label><input
-        type="password"
-        name="password"
-      /><button type="submit">submit</button>
+      <input type="text" name="username" id="username" autocomplete="username" /><label for="password">password</label
+      ><input type="password" name="password" id="password" autocomplete="current-password" /><button
+        type="submit"
+        on:click|preventDefault={handleClick}>submit</button
+      >
     </form>
+    <button on:click={getUsersClick}>get all users</button>
   </div>
 </div>
 
