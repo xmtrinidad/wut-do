@@ -11,7 +11,7 @@ GO
 CREATE TABLE [dbo].[users](
 	[userId] [int] IDENTITY(1,1) NOT NULL,
 	[username] [varchar](50) NOT NULL,
-	[password] [varchar](50) NOT NULL,
+	[password] [varchar](MAX) NOT NULL,
  CONSTRAINT [PK_users] PRIMARY KEY CLUSTERED 
 (
 	[userId] ASC
