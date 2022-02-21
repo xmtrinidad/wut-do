@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const sql = require('mssql');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 require('dotenv').config();
 
 const sqlConfig = {
@@ -21,10 +23,49 @@ router.get('/', async (req, res) => {
   res.status(200).json({ success: true, msg: 'user route werk' });
 });
 
+router.post('/register', async (req, res) => {
+  try {
+    await sql.connect(sqlConfig);
+    const { username, password } = req.body;
+    const userMustBeUnique = await sql.query`SELECT * FROM [WutDoDB].[dbo].[users] WHERE username = ${username}`;
+    if (userMustBeUnique.recordset.length) {
+      return res.json({ success: false, msg: 'username must be unique' });
+    }
+    const hashPassword = bcrypt.genSalt(saltRounds, (err, salt) => {
+      bcrypt.hash(password, salt, async (err, hash) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        const insertNewUser =
+          await sql.query`INSERT INTO [WutDoDB].[dbo].[users] (username, password) VALUES (${username}, ${hash})`;
+        console.log(insertNewUser);
+        if (insertNewUser.rowsAffected) {
+          return res.status(200).json({ success: true, msg: 'new user created' });
+        } else {
+          return res.status(400).json({ success: false, msg: 'something went wrong' });
+        }
+      });
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({ error: err });
+  }
+});
+
 router.post('/login', async (req, res) => {
   try {
+    await sql.connect(sqlConfig);
     const { username, password } = req.body;
-    return res.status(200).json({ success: true, username });
+    const checkForUser = await sql.query`SELECT * FROM [WutDoDB].[dbo].[users] WHERE username = ${username}`;
+    if (checkForUser.recordset.length) {
+      const comparePassword = await bcrypt.compare(password, checkForUser.recordset[0].password);
+      if (comparePassword) {
+        return res.status(200).json({ success: true, username });
+      } else {
+        return res.status(401).json({ success: false, msg: 'incorrect username or password' });
+      }
+    }
   } catch (err) {
     console.error(err);
   }
