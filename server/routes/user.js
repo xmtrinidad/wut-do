@@ -61,6 +61,7 @@ router.post('/login', async (req, res) => {
     if (checkForUser.recordset.length) {
       const comparePassword = await bcrypt.compare(password, checkForUser.recordset[0].password);
       if (comparePassword) {
+        req.session.user = username;
         return res.status(200).json({ success: true, username });
       } else {
         return res.status(401).json({ success: false, msg: 'incorrect username or password' });
@@ -75,9 +76,9 @@ router.get('/user-deets', async (req, res) => {
   try {
     const user = req.session.user;
     if (!user) {
-      return res.status(200).json({ username: false });
+      return res.status(307).json({ success: false, msg: 'you are not logged in' });
     } else {
-      return res.status(200).json({ username: user });
+      return res.status(200).json({ success: true, username: user });
     }
   } catch (err) {
     console.error(err);
