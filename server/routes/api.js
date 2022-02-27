@@ -9,4 +9,8 @@ router.post('/login', async (req, res) => {
   return res.status(200).json({ success: true });
 });
 
+router.post('/createWutDo', async (req, res) => {
+  
+});
+
 module.exports = router;

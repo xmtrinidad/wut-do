@@ -1,46 +1,38 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import Backdrop from './backdrop.svelte';
 
+  let wutdo_title;
+  let wutdo_description;
   const dispatch = createEventDispatcher();
+  
 
   function onModalClose() {
     dispatch('close-modal', {});
   }
 
   function onSubmit() {
-    // Get the input stuff and bubble it up eventually
-
-    dispatch('submit', {title: 'MEMES', description: 'YEEEEEEE'});
+    dispatch('submit', {title: wutdo_title, description: wutdo_description});
   }
 </script>
 
-<div class="backdrop"></div>
+<Backdrop />
 <div class="create-wutdo-modal">
   <h1>wyd?</h1>
   <button class="close-btn" on:click="{onModalClose}">NM</button>
   <div class="input-container">
     <label for="wyd_title">TiTlE:</label>
-    <input type="text" id="wyd_title">
+    <input bind:value={wutdo_title} type="text" id="wyd_title">
   </div>
   <div class="input-container">
     <label for="wyd_description">DeScRiPtIoN:</label>
-    <textarea type="text" id="wyd_description"></textarea>
+    <textarea bind:value={wutdo_description} type="text" id="wyd_description"></textarea>
   </div>
   <button on:click="{onSubmit}" class="submit-btn">SUBMIT</button>
 </div>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Ewert&display=swap');
-
-  .backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: 0.6;
-  }
 
   .create-wutdo-modal {
     position: absolute;

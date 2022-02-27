@@ -14,16 +14,11 @@
 <div class="home-page">
   <h1>WUT DO - WITH TROLL FONT (NOT ROBOTO)</h1>
 
-  <!-- Learning click events -->
   <button on:click="{() => modalOpen = true}" class="add-btn">Add WUT DO</button>
 
-  <!-- Not sure if this is the way to hide/show stuff but it works -->
   {#if modalOpen}
-    <CreateWutdoModal on:submit="{onSubmitWutDo}" on:close-modal="{() => modalOpen = false}"></CreateWutdoModal>
+    <CreateWutdoModal on:submit={onSubmitWutDo} on:close-modal="{() => modalOpen = false}"></CreateWutdoModal>
   {/if}
-  
-  <!-- Component ideas -->
-  <!-- NOT sure if to make this like a dashboard page, then you can click a thing to view previous lists.  Or maybe just one big list of things.  IDK, what you think @Matt Kilcup -->
 
 
 </div>
