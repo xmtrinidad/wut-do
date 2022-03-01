@@ -10,7 +10,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/createWutDo', async (req, res) => {
-  
+  console.log('create wut do works');
 });
 
 module.exports = router;

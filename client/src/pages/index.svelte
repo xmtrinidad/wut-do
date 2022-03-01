@@ -1,11 +1,13 @@
 <script>
   import CreateWutdoModal from '../components/modals/create-wutdo-modal.svelte';
+  import { APP_API } from '../APP_API';
 
   console.log('home page loaded');
   let modalOpen = false;
 
   function onSubmitWutDo(e) {
     console.log('Submit the wut dooo', e.detail);
+    APP_API.testThing();
     modalOpen = false;
   }
 
