@@ -5,9 +5,9 @@
   console.log('home page loaded');
   let modalOpen = false;
 
-  function onSubmitWutDo(e) {
+  async function onSubmitWutDo(e) {
     console.log('Submit the wut dooo', e.detail);
-    APP_API.testThing();
+    await APP_API.createWutDo();
     modalOpen = false;
   }
 
@@ -17,6 +17,8 @@
   <h1>WUT DO - WITH TROLL FONT (NOT ROBOTO)</h1>
 
   <button on:click="{() => modalOpen = true}" class="add-btn">Add WUT DO</button>
+
+  <a href="/wutdo/1">Test Link</a>
 
   {#if modalOpen}
     <CreateWutdoModal on:submit={onSubmitWutDo} on:close-modal="{() => modalOpen = false}"></CreateWutdoModal>
