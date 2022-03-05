@@ -1,6 +1,7 @@
 export const APP_API = {
-  testThing: () => {
+  createWutDo: () => {
     postThingBro('/api/createWutDo', 'user1', '123');
+    
   }
 }
 
