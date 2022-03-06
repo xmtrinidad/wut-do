@@ -1,5 +1,5 @@
 <script>
-  import { isActive, url, goto } from '@roxi/routify';
+  import { layout, isActive, url, goto } from '@roxi/routify';
   import { routes } from '../../.routify/routes';
   const theRoutes = [];
   routes.forEach(route => {
@@ -14,13 +14,11 @@
   </div>
   <div class="header-right">
     <ul class="pages">
-      {#each theRoutes as aRoute}
-        <!-- Svelte magic. If isActive is true, the "active" class is applied. -->
-        <li class:active={$isActive(aRoute.path)}>
-          <a href={$url(aRoute.path)}>
-            {aRoute.name}
-          </a>
+      {#each $layout.children as node}
+        <li>
+          <a href={$url(node.path)} class:active={$isActive(node.path)}> {node.title} </a>
         </li>
+        <!-- uncomment for recursive links <svelte:self {node} /> -->
       {/each}
     </ul>
   </div>
@@ -53,5 +51,6 @@
   }
   .pages li {
     margin: 0 0.5em;
+    list-style-type: none;
   }
 </style>
