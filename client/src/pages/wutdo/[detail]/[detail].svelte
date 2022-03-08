@@ -15,14 +15,12 @@
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
-
   .wutdo {
     width: 700px;
     margin: 0 auto;
     background-color: #303030;
     color: #fff;
   }
-
   .wutdo-title {
     font-size: 4.33945567rem;
     font-family: 'Amatic SC', cursive;
@@ -30,17 +28,7 @@
     text-align: center;
     animation: glow 1s ease-in-out infinite alternate;
   }
-
-  ul {
-    list-style: circle;
-  }
-
-  li {
-    padding: 8px;
-    font-size: 1.2rem;
-  }
-
-    @keyframes glow {
+  @keyframes glow {
     from {
       text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073,
         0 0 70px #e60073;

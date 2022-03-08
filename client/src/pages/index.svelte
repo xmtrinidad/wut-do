@@ -1,5 +1,6 @@
 <script>
   import CreateWutdoModal from '../components/modals/create-wutdo-modal.svelte';
+  import { goto } from '@roxi/routify'
   import { APP_API } from '../APP_API';
 
   console.log('home page loaded');
@@ -9,6 +10,7 @@
     console.log('Submit the wut dooo', e.detail);
     await APP_API.createWutDo();
     modalOpen = false;
+    $goto('/wutdo/1/1')
   }
 
 </script>
