@@ -54,4 +54,18 @@ router.post('/createWutDo', async (req, res) => {
   // }
 });
 
+router.get('/getTodos/:userId', async (req, res) => {
+  const { userId } = req.params;
+  console.log(userId);
+  try {
+    await sql.connect(sqlConfig);
+    const returnTodos = await sql.query`SELECT * FROM [WutDoDb].[dbo].[wutdo] WHERE [userId] = ${userId}`;
+    const json = returnTodos.recordset;
+    return res.status(200).json({ success: true, todos: json });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({ success: false });
+  }
+});
+
 module.exports = router;

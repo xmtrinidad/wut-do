@@ -1,8 +1,14 @@
 <script>
+  import { onMount } from 'svelte';
   import CreateWutdoModal from '../components/modals/create-wutdo-modal.svelte';
   import { APP_API } from '../APP_API';
 
   let todos = [];
+  onMount(async () => {
+    const res = await fetch('/api/getTodos/2');
+    const response = await res.json();
+    todos = response.todos;
+  });
 
   console.log('home page loaded');
   let modalOpen = false;
@@ -22,11 +28,11 @@
 
   <button on:click={() => (modalOpen = true)} class="add-btn">Add WUT DO</button>
 
-  {#if todos.length}
-    {#each todos as todo}
-      <a href="/wutdo/{todo.id}">{todo.title}</a>
-    {/each}
-  {/if}
+  {#each todos as todo}
+    <a href="/wutdo/{todo.id}">{todo.title}</a>
+  {:else}
+    <p>wut do is loading.........</p>
+  {/each}
 
   {#if modalOpen}
     <CreateWutdoModal on:submit={onSubmitWutDo} on:close-modal={() => (modalOpen = false)} />
