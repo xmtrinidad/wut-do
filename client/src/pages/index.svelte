@@ -2,29 +2,35 @@
   import CreateWutdoModal from '../components/modals/create-wutdo-modal.svelte';
   import { APP_API } from '../APP_API';
 
+  let todos = [];
+
   console.log('home page loaded');
   let modalOpen = false;
 
   async function onSubmitWutDo(e) {
     console.log('Submit the wut dooo', e.detail);
-    await APP_API.createWutDo();
+    const { title, description } = e.detail;
+    const sendToDo = await APP_API.createWutDo(title, description);
     modalOpen = false;
+    console.log(sendToDo);
+    todos = sendToDo;
   }
-
 </script>
 
 <div class="home-page">
   <h1>WUT DO - WITH TROLL FONT (NOT ROBOTO)</h1>
 
-  <button on:click="{() => modalOpen = true}" class="add-btn">Add WUT DO</button>
+  <button on:click={() => (modalOpen = true)} class="add-btn">Add WUT DO</button>
 
-  <a href="/wutdo/1">Test Link</a>
-
-  {#if modalOpen}
-    <CreateWutdoModal on:submit={onSubmitWutDo} on:close-modal="{() => modalOpen = false}"></CreateWutdoModal>
+  {#if todos.length}
+    {#each todos as todo}
+      <a href="/wutdo/1}`">{todo.title}</a>
+    {/each}
   {/if}
 
-
+  {#if modalOpen}
+    <CreateWutdoModal on:submit={onSubmitWutDo} on:close-modal={() => (modalOpen = false)} />
+  {/if}
 </div>
 
 <style>
@@ -36,7 +42,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
   }
 
   h1 {
@@ -46,11 +51,9 @@
   .add-btn {
     padding: 12px;
     margin-top: 12px;
-    background-color: #673AB7;
+    background-color: #673ab7;
     border-radius: 4px;
     color: #fff;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 </style>
-
-

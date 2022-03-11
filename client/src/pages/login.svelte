@@ -1,15 +1,12 @@
 <script>
   import { setContext } from 'svelte';
+  let username;
+  let password;
   async function handleClick() {
-    // even though it's JS svelte (or my vsCode) complains about TS stuff
-    const username = document.querySelector('#username')['value'];
-    const password = document.querySelector('#password')['value'];
+    console.log(username, password);
     const wait = await postThingBro(username, password);
     const response = await wait.json();
     console.log(response);
-    if (response.username) {
-      setContext('username', username);
-    }
   }
   async function postThingBro(username, password) {
     const post = await fetch('/user/login', {
@@ -33,11 +30,15 @@
   <div class="login">
     <form class="login-form">
       <label for="username">username</label>
-      <input type="text" name="username" id="username" autocomplete="username" /><label for="password">password</label
-      ><input type="password" name="password" id="password" autocomplete="current-password" /><button
-        type="submit"
-        on:click|preventDefault={handleClick}>submit</button
-      >
+      <input type="text" name="username" id="username" autocomplete="username" bind:value={username} /><label
+        for="password">password</label
+      ><input
+        type="password"
+        name="password"
+        id="password"
+        autocomplete="current-password"
+        bind:value={password}
+      /><button type="submit" on:click|preventDefault={handleClick}>submit</button>
     </form>
     <button on:click={getUsersClick}>get all users</button>
   </div>

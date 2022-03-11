@@ -1,11 +1,11 @@
 <script>
   import { layout, isActive, url, goto } from '@roxi/routify';
   import { routes } from '../../.routify/routes';
-  const theRoutes = [];
-  routes.forEach(route => {
-    route.path === '/index' ? (route.name = 'home') : route;
-    theRoutes.push({ path: route.path, name: route.name });
-  });
+  const theRoutes = [
+    { path: './', name: 'home' },
+    { path: './login', name: 'login' },
+    { path: './wutdo', name: 'wutdo' }
+  ];
 </script>
 
 <header>
@@ -14,11 +14,12 @@
   </div>
   <div class="header-right">
     <ul class="pages">
-      {#each $layout.children as node}
+      {#each theRoutes as route}
         <li>
-          <a href={$url(node.path)} class:active={$isActive(node.path)}> {node.title} </a>
+          <a class="link" class:active={$isActive(route.path)} href={$url(route.path)}>
+            {route.name}
+          </a>
         </li>
-        <!-- uncomment for recursive links <svelte:self {node} /> -->
       {/each}
     </ul>
   </div>
