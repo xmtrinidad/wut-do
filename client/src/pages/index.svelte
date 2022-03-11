@@ -24,7 +24,7 @@
 
   {#if todos.length}
     {#each todos as todo}
-      <a href="/wutdo/1}`">{todo.title}</a>
+      <a href="/wutdo/{todo.id}">{todo.title}</a>
     {/each}
   {/if}
 
