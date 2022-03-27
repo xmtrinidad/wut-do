@@ -1,16 +1,21 @@
 export const APP_API = {
   createWutDo: () => {
-    postThingBro('/api/createWutDo', 'user1', '123');
+    const data = {
+      username: 'user123',
+      wutdoTitle: 'THIS IS THE TITLE',
+      wutdoDesc: 'THIS IS THE DESCRIPTION'
+    };
+    postThingBro('/api/createWutDo', data);
     
   }
 }
 
-const postThingBro = async (url, username, password) => {
+const postThingBro = async (url, data) => {
   const post = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ username, password })
+    body: JSON.stringify({ data })
   });
 };

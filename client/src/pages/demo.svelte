@@ -3,7 +3,8 @@ import AttributesDemo from "../components/demos/attributes-demo.svelte";
 import HtmlRenderDemo from '../components/demos/html-render-demo.svelte';
 import BindDemo from '../components/demos/bind-demo.svelte';
 import PropsDemo from '../components/demos/props-demo.svelte';
-
+import DynamicComponentsDemo from "../components/demos/dynamic-components-demo.svelte";
+import ConstDemo from '../components/demos/const-demo.svelte';
 // Prop being passed into PropsDemo
 const things = [
   { title: 'Thing Title 1', description: 'This be a test description 1'},
@@ -27,6 +28,12 @@ const things = [
   <div class="demo">
     <BindDemo></BindDemo>
   </div>
+  <div class="demo">
+    <DynamicComponentsDemo></DynamicComponentsDemo>
+  </div>
+  <div class="demo">
+    <ConstDemo></ConstDemo>
+  </div>
 </div>
 
 <style>
@@ -36,5 +43,9 @@ const things = [
 
   .demo {
     margin-bottom: 24px;
+  }
+
+  :global(.html-render-demo) {
+    border: 3px solid green;
   }
 </style>
